@@ -1,0 +1,16 @@
+{
+  "name": "sandbox-pdf",
+  "version": "1.0.0",
+  "description": "PDF generator engine using puppeteer",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ohad Shitrit",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "puppeteer": "^16.1.0"
+  }
+}
