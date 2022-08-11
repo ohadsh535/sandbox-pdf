@@ -25,15 +25,11 @@ app.get('/', function (req, res) {
   ];
   const outputPars = output.map(x => `<p>${x}</p>`);
 
-  res.send(
-`<body>
-        <div style="max-width: 700px; margin: 30px auto;">${outputPars.join('')}</div>
-      </body>`
-  );
+  res.send(`<body><div style="max-width: 700px; margin: 30px auto;">${outputPars.join('')}</div></body>`);
 });
 
 app.get('/pdf/url', function (req, res) {
-  const { q: url = 'https://google.com' } = req.query;
+  const {q: url = 'https://google.com'} = req.query;
   PDFUtil.urlToPdf(url)
     .then((pdf) => {
       res.contentType('application/pdf');

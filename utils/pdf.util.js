@@ -1,6 +1,5 @@
 const puppeteer = require('puppeteer');
 
-
 const PDF_FORMAT_OPTS = {
   format: 'A4',
   margin: {
@@ -18,14 +17,14 @@ const PDF_FORMAT_OPTS = {
  * @returns {Promise<Buffer>}
  */
 async function urlToPdf(url) {
-  const browser = await puppeteer.launch({ headless: true });
+  const browser = await puppeteer.launch({headless: true});
   const page = await browser.newPage();
   await page.goto(url, {waitUntil: 'networkidle0'});
   const pdf = await page.pdf(PDF_FORMAT_OPTS);
 
   await browser.close();
   return pdf
-};
+}
 
 /***
  * HTML based rendering.
@@ -43,7 +42,7 @@ async function htmlToPdf(pdfHTML) {
   const pdf = await page.pdf(PDF_FORMAT_OPTS);
   await browser.close();
   return pdf;
-};
+}
 
 const PDFUtil = {
   urlToPdf,
