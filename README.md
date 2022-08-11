@@ -10,3 +10,16 @@ yarn install
 ```
 yarn start
 ```
+---
+
+### One Liner Run (Linux)
+#### Prerequisites: `bash`, `git`, `npm` or `yarn`
+
+#### `yarn`
+```
+git clone git@github.com:ohadsh535/sandbox-pdf.git && cd sandbox-pdf && yarn install && yarn start
+```
+#### `npm`
+```
+git clone git@github.com:ohadsh535/sandbox-pdf.git && cd sandbox-pdf && npm install && npm start
+```
