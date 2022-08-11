@@ -1,24 +1,33 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const app = express();
+
+const PORT = 7676;
 
 const PDFUtil = require('./utils/pdf.util');
 
 app.get('/', function (req, res) {
+
+  const URLS = {
+    remote: `http://localhost:${PORT}/pdf/url?q=https://google.com`,
+    local: `http://localhost:${PORT}/pdf/url?q=http://localhost:${PORT}`,
+    render: `http://localhost:${PORT}/pdf/render`,
+  }
+
   const output = [
     '<h2>Example PDF renderer</h2>',
     '<hr/>',
     'Approach 1: (URL Based)',
-    'a. Remote: <a href="http://localhost:7676/pdf/url?q=https://google.com">http://localhost:7676/pdf/url?q=https://google.com</a>',
-    'b. Local: <a href="http://localhost:7676/pdf/url?q=http://localhost:7676">http://localhost:7676/pdf/render?q=http://localhost:7676</a>',
+    `a. Remote: <a href="${URLS.remote}">${URLS.remote}</a>`,
+    `b. Local: <a href="${URLS.local}">${URLS.local}</a>`,
     '<hr/>',
     'Approach 2: (HTML Based)',
-    '<a href="http://localhost:7676/pdf/render">http://localhost:7676/pdf/render</a>',
+    `<a href="${URLS.render}">${URLS.render}</a>`,
   ];
   const outputPars = output.map(x => `<p>${x}</p>`);
 
   res.send(
 `<body>
-        <div style="max-width: 700px; margin: 0 auto;">${outputPars.join('')}</div>
+        <div style="max-width: 700px; margin: 30px auto;">${outputPars.join('')}</div>
       </body>`
   );
 });
@@ -48,9 +57,7 @@ app.get('/pdf/render', function (req, res) {
     .catch((err) => res.send(err));
 });
 
-const PORT = 7676;
 console.log(`Server running on port: ${PORT}`);
-console.log(`Remote: http://localhost:7676/pdf/url?q=https://google.com`);
-console.log(`Local: http://localhost:7676/pdf/url?q=http://localhost:7676`);
+console.log(`Visit: http://localhost:${PORT}`);
 
 app.listen(PORT);
